@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const scoreDisplay = document.getElementById('score');
   const gameOverScreen = document.getElementById('game-over');
   const finalScoreDisplay = document.getElementById('final-score');
+  const startScreen = document.getElementById('start-screen');
+  const startButton = document.getElementById('start-button');
+  const playAgainButton = document.getElementById('play-again-button');
 
   // Images
   const basketImg = new Image();
@@ -42,6 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowLeft') keys.left = false;
     if (e.key === 'ArrowRight') keys.right = false;
   });
+
+  // Button event listeners
+  startButton.addEventListener('click', startGame);
+  playAgainButton.addEventListener('click', startGame);
 
   function updateBeachgoer() {
     if (keys.left) beachgoer.x -= beachgoer.speed;
@@ -105,7 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     misses = 0;
     coconuts = [];
     gameRunning = true;
+    startScreen.style.display = 'none';
     gameOverScreen.style.display = 'none';
+    scoreDisplay.style.display = 'block';
     scoreDisplay.textContent = `Score: ${score}`;
     coconut.speed = 2;
     gameLoop();
@@ -114,15 +123,21 @@ document.addEventListener('DOMContentLoaded', () => {
   function endGame() {
     gameRunning = false;
     gameOverScreen.style.display = 'block';
+    scoreDisplay.style.display = 'none';
     finalScoreDisplay.textContent = score;
   }
 
-  // Wait until images are loaded
+  // Wait until images are loaded, then show start screen
   let imagesLoaded = 0;
   [basketImg, coconutImg, palmTreeImg, beachgoerImg].forEach((img) => {
     img.onload = () => {
       imagesLoaded++;
-      if (imagesLoaded === 4) startGame();
+      if (imagesLoaded === 4) {
+        // Show start screen instead of auto-starting
+        startScreen.style.display = 'block';
+        scoreDisplay.style.display = 'none';
+        gameOverScreen.style.display = 'none';
+      }
     };
   });
 });

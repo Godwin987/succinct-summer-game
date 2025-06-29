@@ -20,6 +20,44 @@ canvas {
   color: #FFF;
   font-size: 20px;
   text-shadow: 1px 1px 2px #000;
+  display: none;
+}
+
+#start-screen {
+  position: absolute;
+  text-align: center;
+  color: #FFF;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+}
+
+#start-screen h1 {
+  margin: 0 0 20px 0;
+  font-size: 32px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+#start-screen p {
+  font-size: 18px;
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+#start-button, #play-again-button {
+  padding: 15px 30px;
+  font-size: 20px;
+  background: #FF6347;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#start-button:hover, #play-again-button:hover {
+  background: #FF4500;
 }
 
 #game-over {
@@ -40,18 +78,4 @@ canvas {
 
 #game-over p {
   font-size: 24px;
-}
-
-#game-over button {
-  padding: 10px 20px;
-  font-size: 18px;
-  background: #FF6347;
-  color: #FFF;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#game-over button:hover {
-  background: #FF4500;
 }
