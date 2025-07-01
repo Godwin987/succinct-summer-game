@@ -114,30 +114,34 @@ document.addEventListener('DOMContentLoaded', () => {
     gameRunning = true;
     startScreen.style.display = 'none';
     gameOverScreen.style.display = 'none';
+    gameOverScreen.classList.remove('show');
     scoreDisplay.style.display = 'block';
     scoreDisplay.textContent = `Score: ${score}`;
     coconut.speed = 2;
+    canvas.style.display = 'block';
     gameLoop();
   }
 
   function endGame() {
     gameRunning = false;
     gameOverScreen.style.display = 'block';
+    setTimeout(() => gameOverScreen.classList.add('show'), 10);
     scoreDisplay.style.display = 'none';
     finalScoreDisplay.textContent = score;
+    canvas.style.display = 'none';
   }
 
-  // Wait until images are loaded, then show start screen
+  // Show start screen immediately for better user experience
+  startScreen.style.display = 'block';
+  scoreDisplay.style.display = 'none';
+  gameOverScreen.style.display = 'none';
+  canvas.style.display = 'none';
+  
+  // Wait until images are loaded before allowing game to start
   let imagesLoaded = 0;
   [basketImg, coconutImg, palmTreeImg, beachgoerImg].forEach((img) => {
     img.onload = () => {
       imagesLoaded++;
-      if (imagesLoaded === 4) {
-        // Show start screen instead of auto-starting
-        startScreen.style.display = 'block';
-        scoreDisplay.style.display = 'none';
-        gameOverScreen.style.display = 'none';
-      }
     };
   });
 });
